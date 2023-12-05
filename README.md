@@ -54,14 +54,14 @@ Para ello tenemos que acceder al archivo de netplan y modificarlo para declarar 
 
 Ahora tendremos que, en el apartado del adaptador de **"enp0s8"**, poner lo siguiente:
 
-    **enp0s8:**
-        **dhcp4: no**
-        **addresses: [172.16.0.1/16]**
-        **nameservers:**
-            **addresses:**
-                **- 8.8.8.8**
-                **- 8.8.4.4**
-    **version: 2**                
+    enp0s8:
+        dhcp4: no
+        addresses: [172.16.0.1/16]
+        nameservers:
+            addresses:
+                - 8.8.8.8
+                - 8.8.4.4
+    version: 2                
 
 Cuando ya lo hayamos guardado, lo lanzaremos con el comando:
 
