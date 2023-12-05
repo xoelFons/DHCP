@@ -68,3 +68,44 @@ Cuando ya lo hayamos guardado, lo lanzaremos con el comando:
 ***$ sudo netplan apply***
 
 ## Arrancar servicio con systemctl.
+
+Simplemente se utiliza el siguiente comando:
+
+***$ sudo systemctl start isc-dhcp-server***
+
+## Comprueba el servicio con "systemctl status".
+
+Con el comando:
+
+***$ sudo systemctl status isc-dhcp-server***
+
+Si está todo correctamente, debería ponerte que está **activo** y **corriendo**, si no lo pone, no estará bien redactado alguno de los archivos.
+
+## Prueba con el cliente que se le asigna un ip en el rango.
+
+Ahora si entramos con el cliente con el servidor encendido y vamos a opciones de red, veremos que se nos asignará una IP dentro del rango que hayamos puesto. También se podrá ver con **ip a**.
+
+## Declarar una asignación por mac fija a 172.16.0.5
+
+Tendremos que volver a modificar el archivo **/etc/dhcp/dhcpd.conf** para ello. 
+
+Lo que tendremos que hacer es añadir unas líneas adicionales a lo que teníamos escrito ya. Lo colocaremos debajo de las líneas anteriores.
+
+    host cliente2 {
+        hardware ethernet 42:68:cd:5e:e8:2d;
+        fixed-address 172.16.0.5;
+    }
+
+## Prueba con otro cliente que se le asigna la IP fija.
+
+Ahora con el cliente de donde cogimos la MAC, realizamos el **ip a** y veremos que la ip que tiene el equipo es la que hemos asignado en esas líenas del apartado anterior.
+
+## Comprueba con wireshark los mensajes del protocolo
+
+En el cliente instalamos **wireshark** con el comando:
+
+***$ sudo apt-get install wireshark***
+
+Cuando lo tengamos instalado, accederemos a el y haremos distintos ping en el servidor, cuando los hagamos veremos en el wireshark los mensajes captados producidos por el ping.
+
+
